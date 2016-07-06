@@ -46,3 +46,21 @@ ton of oneliners. This is a list of the commands that I use the most.
     cd folder;
     for i in `seq 1 100`; do git fetch --depth=$i; done;
     ```
+
+- SFTP `put` a file into a remote server, in one single command (SFTP shell doesn't have TAB autocompletion)
+
+    ```sh
+    sftp -P $PORT$ $USERNAME$@$SERVER$ <<< 'put $FILENAME$'
+    ```
+
+- Check what certificate an APK file has been signed with
+
+    ```sh
+    jarsigner -verify -verbose -certs apk-name.apk | less
+    ```
+
+- List all the keys in a keystore file (Android)
+
+    ```sh
+    keytool -list -v -keystore $FILENAME$.jks
+    ```
