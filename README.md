@@ -64,3 +64,12 @@ ton of oneliners. This is a list of the commands that I use the most.
     ```sh
     keytool -list -v -keystore $FILENAME$.jks
     ```
+
+- Replace target regular expression with replacement (using captured groups) with `sed`
+
+    ```sh
+    sed -ie "s/expressionWith\([0-9]*\)AGroup/expressionWithAGroup\1InADifferentPlace/g" *.xml
+    ```
+
+    **NOTE:** `sed` uses Basic Regular Expressions, hence the group capturing parenthese MUST be
+    escaped: [SO Answer](http://stackoverflow.com/a/24717687/2080089)
