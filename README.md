@@ -73,3 +73,19 @@ ton of oneliners. This is a list of the commands that I use the most.
 
     **NOTE:** `sed` uses Basic Regular Expressions, hence the group capturing parenthese MUST be
     escaped: [SO Answer](http://stackoverflow.com/a/24717687/2080089)
+
+
+- Curl command to run commands through a SOCKS proxy (setup either through TOR
+    or ssh tunneling)
+
+    ```sh
+    curl --socks5 localhost:9050 http://icanhazip.com
+    ```
+
+    ```sh
+    curl --socks5 localhost:9050 https://check.torproject.org > index.html
+    $EDITOR index.html
+    ```
+
+    **NOTE:** This is especially useful when trying to figure out whether the
+    socks5 proxy is working properly.
