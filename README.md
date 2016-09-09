@@ -89,3 +89,21 @@ ton of oneliners. This is a list of the commands that I use the most.
 
     **NOTE:** This is especially useful when trying to figure out whether the
     socks5 proxy is working properly.
+
+- Iterating over files inside `bash`
+
+    ```sh
+    for i in *.caf; do
+    ffmpeg -i "$i" "$(echo "$i" | cut -d . -f 1)".wav
+    done
+    ```
+
+    **Note:** Check [this](http://unix.stackexchange.com/a/131767/36994) Unix
+    StackExchange answer for more details about whitespaces, quoting and bash.
+
+
+- List the packages that are installed on your system with `dpkg`
+
+    ```sh
+    dpkg --get-selections | less
+    ```
