@@ -107,3 +107,9 @@ ton of oneliners. This is a list of the commands that I use the most.
     ```sh
     dpkg --get-selections | less
     ```
+
+- List all the folders, in ascending order of size
+
+    ```sh
+    du -h --max-depth=1 | sort -h
+    ```
