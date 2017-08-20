@@ -113,3 +113,10 @@ ton of oneliners. This is a list of the commands that I use the most.
     ```sh
     du -h --max-depth=1 | sort -h
     ```
+
+- Restart the kernel module `usbhid` (Useful when clicking the mouse doesn't
+    work, although pointing works. Faced on Ubuntu 16.04.2 LTS)
+
+    ```sh
+    sudo modprobe -r usbhid && sleep 1 && sudo modprobe usbhid
+    ```
