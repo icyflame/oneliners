@@ -114,9 +114,18 @@ ton of oneliners. This is a list of the commands that I use the most.
     du -h --max-depth=1 | sort -h
     ```
 
-- Restart the kernel module `usbhid` (Useful when clicking the mouse doesn't
-    work, although pointing works. Faced on Ubuntu 16.04.2 LTS)
+- Removes a kernel module and then re-adds it. Doing this for `usbhid`, fixes
+    problems in Ubuntu 16.04 LTS related to the mouse or other USB peripherals
 
     ```sh
     sudo modprobe -r usbhid && sleep 1 && sudo modprobe usbhid
     ```
+
+- Convert between AV formats using `ffmpeg`
+
+    ```sh
+    ffmpeg -i input_file.mp4 output_file.mp3
+    ```
+
+    Common formats are accepted, such as: avi, wav, mp3, mp4, mkv etc. (Audio,
+    Video streams etc are inferred on the basis of the output file name)
