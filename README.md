@@ -129,3 +129,9 @@ ton of oneliners. This is a list of the commands that I use the most.
 
     Common formats are accepted, such as: avi, wav, mp3, mp4, mkv etc. (Audio,
     Video streams etc are inferred on the basis of the output file name)
+
+- Watch a file get appended using `tail`
+
+    ```sh
+    tail -f ~/test.log
+    ```
