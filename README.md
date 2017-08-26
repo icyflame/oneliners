@@ -135,3 +135,15 @@ ton of oneliners. This is a list of the commands that I use the most.
     ```sh
     tail -f ~/test.log
     ```
+
+- Use `vlc` to play a random file from a recursive list of _all_ files
+
+    ```sh
+    vlc "`find . -not -type d | shuf | head -n1`"
+    ```
+
+    **Note:** It is inherently assumed that the subtree of the folder from which
+    this command is being run doesn't contain any files that are not playable by
+    VLC, such as txt, doc, etc. This oneliner _can_ be enhanced to ensure that
+    only video files are found and played. If you find an elegant way to do
+    that, please open a PR!
