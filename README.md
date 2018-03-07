@@ -147,3 +147,9 @@ ton of oneliners. This is a list of the commands that I use the most.
     VLC, such as txt, doc, etc. This oneliner _can_ be enhanced to ensure that
     only video files are found and played. If you find an elegant way to do
     that, please open a PR!
+
+- List all the files in a folder except the most recently modified one
+
+    ```sh
+    ls -tr | head -n $((`ls -tr | wc -l`-1))
+    ```
