@@ -153,3 +153,16 @@ ton of oneliners. This is a list of the commands that I use the most.
     ```sh
     ls -tr | head -n $((`ls -tr | wc -l`-1))
     ```
+
+- Move current window to the top in `tmux`
+
+    ```sh
+    move-window -t 0
+    ```
+
+- Swap windows N1 and N2 inside `tmux`
+
+    ```sh
+    swap-window -t 0
+    swap-window -s N1 -t N2
+    ```
