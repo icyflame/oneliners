@@ -166,3 +166,16 @@ ton of oneliners. This is a list of the commands that I use the most.
     swap-window -t 0
     swap-window -s N1 -t N2
     ```
+
+- Show progress while creating a gzipped archive using tar and gzip (uses
+  [pv](https://www.ivarch.com/programs/quickref/pv.shtml))
+
+    ```sh
+    tar cf - FOLDER | pv -cN compression -s `du -sb FOLDER | cut -f1` | gzip -9 > 1A.tar.gz
+    ```
+
+- Show progress while encrypting a file using GPG
+
+    ```sh
+    pv FILE | gpg --symmetric --passphrase "test" > FILE.gpg
+    ```
