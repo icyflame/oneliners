@@ -177,7 +177,18 @@ problems in Ubuntu 16.04 LTS related to the mouse or other USB peripherals
 
 - Serving the current directory on the local network using `nginx`
   ```sh
-  docker run -p 9090:9091 \
+  $ cat test.conf
+  server {
+      listen       9091;
+      server_name  localhost;
+
+      location / {
+          root   /var/www/html;
+          index  index.html index.htm;
+      }
+  }
+
+  $ docker run -p 9090:9091 \
     -v "`pwd`:/var/www/html" \
     -v "`pwd`/test.conf:/etc/nginx/conf.d/localserver.conf" \
     -d --name localserver nginx:latest
