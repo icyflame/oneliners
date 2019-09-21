@@ -2,6 +2,14 @@
 
 > Bash one-liners that are always useful :heart: :heart:
 
+### TOC
+
+- [Why](#why)
+- [List](#init)
+  - [Concepts](#concepts)
+  - [Commands](#commands)
+  - [Docker](#docker)
+
 ### Why?
 
 There are [many](https://github.com/jlevy/the-art-of-command-line#basics)
@@ -163,6 +171,24 @@ problems in Ubuntu 16.04 LTS related to the mouse or other USB peripherals
 - Re-attach the top session of `screen` in the output of `screen -ls`
   ```sh
   screen -r `screen -ls | head -n-1 | tail -n-1 | awk '{ print $1 }'`
+  ```
+
+#### Docker
+
+- Serving the current directory on the local network using `nginx`
+  ```sh
+  docker run -p 9090:9091 \
+    -v "`pwd`:/var/www/html" \
+    -v "`pwd`/test.conf:/etc/nginx/conf.d/localserver.conf" \
+    -d --name localserver nginx:latest
+  ```
+
+- Converting a markdown file to an HTML file
+  ```sh
+  docker run \
+    -v `pwd`:/source jagregory/pandoc \
+    -f markdown -t html5 \
+    scratch/scratch-2019-09-17-22-33-55-z-review.md -o z-review.html
   ```
 
 [1]: https://www.ivarch.com/programs/quickref/pv.shtml
