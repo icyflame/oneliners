@@ -202,4 +202,9 @@ problems in Ubuntu 16.04 LTS related to the mouse or other USB peripherals
     scratch/scratch-2019-09-17-22-33-55-z-review.md -o z-review.html
   ```
 
+- Run `htop` on a host
+  ```sh
+  docker run -it --pid=host jonbaldie/htop
+  ```
+
 [1]: https://www.ivarch.com/programs/quickref/pv.shtml
