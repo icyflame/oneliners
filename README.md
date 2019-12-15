@@ -209,6 +209,11 @@ problems in Ubuntu 16.04 LTS related to the mouse or other USB peripherals
 
 - Run a squid proxy server on port 3128
   ```sh
+  # Prepare the configuration file
+  docker run --rm sameersbn/squid \
+    cat /etc/squid/squid.conf > squid.conf
+  # Edit the configuration file
+  # Start the proxy server using this configuration
   docker run --name squid -d --restart=always \
     --publish 3128:3128 \
     -v "$PWD/squid.conf":/etc/squid/squid.conf \
