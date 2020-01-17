@@ -185,6 +185,10 @@ problems in Ubuntu 16.04 LTS related to the mouse or other USB peripherals
       location / {
           root   /var/www/html;
           index  index.html index.htm;
+
+          # ngx_http_access_module
+          allow 10.0.0.0/24;
+          deny all;
       }
   }
 
