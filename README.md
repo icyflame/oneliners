@@ -224,4 +224,17 @@ problems in Ubuntu 16.04 LTS related to the mouse or other USB peripherals
     sameersbn/squid
   ```
 
+- Get the TLS certificate for a domain
+  ```sh
+  # Print the certificate as human readable text
+  openssl s_client -tls1_2 -connect duckduckgo.com:443 < /dev/null 2> /dev/null | openssl x509 -text
+
+  # Print the certificate for a given host name if the domain has multiple TLS
+  # hosts
+  openssl s_client -tls1_2 -connect duckduckgo.com:443 -servername duckduckgo.com < /dev/null 2> /dev/null | openssl x509 -text
+
+  # Check if the certificate is going to expire in the next 30 seconds
+  openssl s_client -tls1_2 -connect duckduckgo.com:443 < /dev/null 2> /dev/null | openssl x509 -checkend 30
+  ```
+
 [1]: https://www.ivarch.com/programs/quickref/pv.shtml
