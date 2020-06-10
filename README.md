@@ -224,7 +224,7 @@ problems in Ubuntu 16.04 LTS related to the mouse or other USB peripherals
     sameersbn/squid
   ```
 
-- Get the TLS certificate for a domain
+- Get the TLS (HTTPS) certificate for a domain
   ```sh
   # Print the certificate as human readable text
   openssl s_client -tls1_2 -connect duckduckgo.com:443 < /dev/null 2> /dev/null | openssl x509 -text
