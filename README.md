@@ -173,6 +173,29 @@ problems in Ubuntu 16.04 LTS related to the mouse or other USB peripherals
   screen -r `screen -ls | head -n-1 | tail -n-1 | awk '{ print $1 }'`
   ```
 
+- Encrypt a file using the ChaCha20 stream cipher (using `openssl`)
+  ```sh
+  KEY=$(uuidgen); echo $KEY > /tmp/1.key
+  echo "test" > /tmp/1.in
+  openssl enc -chacha20 -kfile /tmp/1.key -pbkdf2 -base64 -out /tmp/1.out < /tmp/1.in;
+  ```
+
+- Using `pdftk` ("Stapler, hole-punch, binder for PDF files")
+  ```sh
+  # Append multiple PDF files together
+  pdftk 1.pdf 2.pdf cat output output.pdf
+
+  # Markup PDF files
+  ## Burst open PDF file into its composite pages
+  pdftk input.pdf burst
+
+  ## Markup each PDF file using Gimp
+  gimp pg*.pdf
+
+  ## Put the PDF files back together using pdftk
+  pdftk pg*.pdf cat output output.pdf
+  ```
+
 #### Docker
 
 - Serving the current directory on the local network using `nginx`
