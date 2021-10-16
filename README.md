@@ -180,11 +180,31 @@ problems in Ubuntu 16.04 LTS related to the mouse or other USB peripherals
   openssl enc -chacha20 -kfile /tmp/1.key -pbkdf2 -base64 -out /tmp/1.out < /tmp/1.in;
   ```
 
-- Using `pdftk` ("Stapler, hole-punch, binder for PDF files")
+- Using `pdftk` to concatenate multiple files ("Stapler, hole-punch, binder for PDF files")
   ```sh
   # Append multiple PDF files together
   pdftk 1.pdf 2.pdf cat output output.pdf
+  ```
 
+- Using `pdftk` to rotate pages in PDF files
+  ```sh
+  # Rotate a range of pages in PDF files. Other files will be left unchanged and passed through
+  # as-is.
+  #
+  # This will create an output PDF with the second and third pages rotated 90 degrees
+  # anti-clockwise. All other pages in in.pdf will retain their original orientation.
+  $ pdftk in.pdf rotate 2-3left output out.pdf
+
+  # Rotate pages and concatenate multiple PDFs simultaneously
+  #
+  # This will create output PDF with 2 pages: the first page of the file in1.pdf, rotated left (90 degrees
+  # CCW) and the first page of in2.pdf, rotated right (90 degrees CW)
+  $ pdftk A=in1.pdf B=in2.pdf cat A1left B1right output out.pdf
+  ```
+
+
+- Using `pdftk` to markup PDF files
+  ```sh
   # Markup PDF files
   ## Burst open PDF file into its composite pages
   pdftk input.pdf burst
