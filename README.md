@@ -216,6 +216,11 @@ problems in Ubuntu 16.04 LTS related to the mouse or other USB peripherals
   pdftk pg*.pdf cat output output.pdf
   ```
 
+- Using `qpdf` to decrypt files which have [a password](https://askubuntu.com/a/828727)
+  ```sh
+  qpdf -password=<your-password> -decrypt /path/to/secured.pdf out.pdf
+  ```
+
 #### Docker
 
 - Serving the current directory on the local network using `nginx`
