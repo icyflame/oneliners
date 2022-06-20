@@ -285,4 +285,25 @@ problems in Ubuntu 16.04 LTS related to the mouse or other USB peripherals
   openssl s_client -tls1_2 -connect duckduckgo.com:443 < /dev/null 2> /dev/null | openssl x509 -checkend 30
   ```
 
+- Find a regular expression and print the first captured group based on some condition (using Perl)
+
+  ```sh
+  $ cat <<EOF | perl -lane 'm!count: ([0-9]+)! and $1 > 10 and print $1'
+  count: 50
+  count: 9
+  test: 10
+  EOF
+  50
+  ```
+
+  We are using 4 Perl options.
+
+  1. `-l`: Enable line-by-line processing
+  2. `-a`: Enable autosplit mode (the input line is split at whitespace characters and the result is
+     stored in the array `@F`
+  3. `-n`: The given expression is put inside a loop in which each line is processed
+     sequentially. Using this option, the final program is equivalent to: `while(<>) { ... given
+     expression ... }`
+  4. `-e`: Provide a single line of the Perl script
+
 [1]: https://www.ivarch.com/programs/quickref/pv.shtml
