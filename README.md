@@ -68,14 +68,56 @@ ton of oneliners. This is a list of the commands that I use the most.
   keytool -list -v -keystore $FILENAME$.jks
   ```
 
-- Replace target regular expression with replacement (using captured groups) with `sed`
+- Replace target regular expression with replacement (using captured groups) with GNU `sed` (or
+  `gsed`)
+
   ```sh
-  sed -ie "s/expressionWith\([0-9]*\)AGroup/expressionWithAGroup\1InADifferentPlace/g" *.xml
+  gsed -ie "s/some \(text\)/\U\1/g" *.xml
   ```
 
-  **NOTE:** `sed` uses Basic Regular Expressions, hence the group capturing parenthese MUST be
-  escaped: [SO Answer](http://stackoverflow.com/a/24717687/2080089)
+  `sed` uses basic regular expressions by default, hence the group capturing parentheses
+  [MUST](http://stackoverflow.com/a/24717687/2080089) be escaped. `sed`'s options to use extended
+  regexp can be turned on using the `-E` flag. The above command would become:
 
+  ```sh
+  $ echo "some text here" | gsed -E "s/some (text)/\U\1/g"
+  TEXT here
+  ```
+
+  `sed` can be used with characters other than `/` as the separating character for the
+  commands. This is clearer in some contexts. Especially, when the text to be replaced has a forward
+  slash itself.
+
+  ```sh
+  $ echo "https://example.com" | gsed 's#/#-#g'
+  https:--example.com
+  ```
+
+  `sed` prints the pattern space (i.e. input stream) by default. This can be annoying if you want to
+  print the output of a transform _only_ when the pattern that we are searching for exists in the
+  input.
+
+  ```sh
+  $ echo "this is not a URL" | gsed 's#http://#https://#g'
+  this is not a URL
+
+  $ echo "http://example.com" | gsed 's#http://#https://#g'
+  https://example.com
+  ```
+
+  Compare this confusing output which transforms the input if the input is found and prints it
+  without applying the transform when the pattern is not found, to the following output which prints
+  something to the console **only** when the transform is applied. **Note** that here the expression
+  _must_ have the `p` command, which tells `sed` to explicitly print the output of the previous
+  `s///g` command.
+
+  ```sh
+  $ echo "this is not a URL" | gsed -n 's#http://#https://#gp'
+  # Empty output
+
+  $ echo "http://example.com" | gsed -n 's#http://#https://#gp'
+  https://example.com
+  ```
 
 - Curl command to run commands through a SOCKS proxy (setup either through TOR
   or ssh tunneling)
