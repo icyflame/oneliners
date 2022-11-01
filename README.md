@@ -263,6 +263,23 @@ problems in Ubuntu 16.04 LTS related to the mouse or other USB peripherals
   qpdf -password=<your-password> -decrypt /path/to/secured.pdf out.pdf
   ```
 
+- Using `ghostscript` to [reduce the size of PDF
+  files](https://linuxaria.com/pills/resize-pdfs-from-the-command-line-in-linux)
+
+  ```sh
+  $ ghostscript -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/ebook -dNOPAUSE -dQUIET -dBATCH -sOutputFile=output.pdf input.pdf
+  ```
+
+  There are multiple levels of compression. From highest to lowest:
+
+  1. `/screen` or `/default` (72 DPI) (Smallest file size)
+  2. `/ebook` (150 DPI)
+  3. `/printer` (300 DPI)
+  4. `/prepress` (color preserving, 300 DPI)
+
+  `/ebook` works well in most cases. It was useful in compressing the size of PDFs which contained a
+  single image, which was quite big. (**Example:** 8 MB => using `/ebook` => 0.8 MB.)
+
 #### Docker
 
 - Serving the current directory on the local network using `nginx`
