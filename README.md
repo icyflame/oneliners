@@ -228,6 +228,17 @@ problems in Ubuntu 16.04 LTS related to the mouse or other USB peripherals
   pdftk 1.pdf 2.pdf cat output output.pdf
   ```
 
+- Using `pdftk` to concatenate only a few pages from one file or to get pages from various files in
+  the desired order
+
+  ```sh
+  # Get only pages 1 through 4 (both inclusive) of a 7 page PDF
+  pdftk 1.pdf cat 1-4 output out.pdf
+
+  # Get the pages of 2 2-page PDF files interleaved
+  pdftk A=1.pdf B=2.pdf cat A1 B1 A2 B2 output out.pdf
+  ```
+
 - Using `pdftk` to rotate pages in PDF files
   ```sh
   # Rotate a range of pages in PDF files. Other files will be left unchanged and passed through
